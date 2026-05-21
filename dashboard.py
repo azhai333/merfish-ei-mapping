@@ -10,12 +10,12 @@ FIGURES = RESULTS / "figures"
 
 st.set_page_config(page_title="Forebrain E/I Mapping", layout="wide")
 
-st.title("Forebrain E/I Ratio Mapping — MERFISH WMB")
+st.title("Forebrain E/I Ratio Mapping using MERFISH data in whole mouse brain")
 st.caption("Zhang et al. 2023, *Science* · Allen Brain Cell Atlas · ~4.4M cells, mouse forebrain")
 
 st.markdown("""
 **Question:** Can volumetric image analysis recover the known excitatory/inhibitory organization of the
-mouse forebrain from MERFISH cell coordinates alone — no manual annotation, just neurotransmitter labels
+mouse forebrain from MERFISH cell coordinates alone. No manual annotation, just neurotransmitter labels
 and 3D positions?
 
 Each cell (glutamatergic = excitatory, GABAergic = inhibitory) is binned into a 20µm voxel grid
@@ -48,7 +48,7 @@ st.divider()
 tab1, tab2, tab3, tab4 = st.tabs(["Brain sections", "By region", "Subregion explorer", "Gradient"])
 
 with tab1:
-    st.subheader("E/I ratio — coronal sections")
+    st.subheader("E/I ratio in coronal sections")
     st.caption("Top row: CCF atlas annotation (region boundaries). Bottom row: E/I ratio map (blue = inhibitory, red = excitatory). NaN voxels (no MERFISH data) are black.")
     img = Image.open(FIGURES / "ei_ratio_sections.png")
     st.image(img, use_container_width=True)
@@ -79,7 +79,7 @@ with tab2:
         - Hippocampus (HPF) ~0.70
         - PAL/OLF intermediate
 
-        Coverage is ~23% of CCF volume — expected for MERFISH sections,
+        Coverage is ~23% of CCF volume, which is expected for MERFISH sections,
         which don't tile continuously like whole-brain LSFM.
         """)
 
@@ -160,7 +160,7 @@ with tab4:
         st.image(img6, use_container_width=True)
 
     st.markdown("""
-    The AP gradient drops toward the posterior — posterior structures like the brainstem have higher
+    The AP gradient drops toward the posterior, posterior structures like the brainstem have higher
     inhibitory fractions. The ML gradient is more symmetric but shows slight medial elevation
     (thalamus, hypothalamus are mixed), dropping laterally into the cortical mantle.
     """)

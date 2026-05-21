@@ -5,7 +5,6 @@ RESULTS_DIR = Path("results")
 FIGURES_DIR = RESULTS_DIR / "figures"
 DENSITY_DIR = DATA_DIR / "density_maps"
 
-# Zhang et al. 2023, Science - https://doi.org/10.1126/science.abj6987
 ABC_S3_BASE = "https://allen-brain-cell-atlas.s3.us-west-2.amazonaws.com"
 
 CCF_COORDS_URL = f"{ABC_S3_BASE}/metadata/MERFISH-C57BL6J-638850-CCF/20231215/ccf_coordinates.csv"
