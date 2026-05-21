@@ -78,4 +78,3 @@ Coverage is ~23% of the CCF volume — lower than you'd get from a whole-brain L
 | `qc.py` | QC checks and report |
 | `visualize.py` | figures |
 | `run_pipeline.py` | top-level orchestration |
-# merfish-ei-mapping
