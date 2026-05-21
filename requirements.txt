@@ -1,0 +1,13 @@
+numpy
+scipy
+scikit-image
+pandas
+matplotlib
+seaborn
+tqdm
+requests
+pynrrd
+nibabel
+streamlit
+plotly
+pillow
