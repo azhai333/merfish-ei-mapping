@@ -1,6 +1,18 @@
 # Forebrain E/I ratio mapping from MERFISH data
 
-Maps excitatory/inhibitory neuron density ratios across the mouse forebrain using the Allen Brain Cell Atlas MERFISH dataset ([Zhang et al. 2023, *Science*](https://www.nature.com/articles/s41586-023-06808-9)). The question is whether automated volumetric analysis can recover the known neuroanatomical E/I organization, cortex heavily excitatory, striatum heavily inhibitory without any manual annotation, just cell coordinates and neurotransmitter labels.
+Maps excitatory/inhibitory neuron density ratios across the mouse forebrain using the Allen Brain Cell Atlas MERFISH dataset ([Zhang et al. 2023, *Science*](https://doi.org/10.1126/science.abj6987)). The question is whether automated volumetric analysis can recover the known neuroanatomical E/I organization -- cortex heavily excitatory, striatum heavily inhibitory -- without any manual annotation, just cell coordinates and neurotransmitter labels.
+
+**[Live dashboard](https://your-app.streamlit.app)** <!-- replace after deploying to Streamlit Community Cloud -->
+
+---
+
+![Coronal E/I sections](results/figures/ei_ratio_sections.png)
+*Coronal montage of E/I ratio across the forebrain. Top row: CCF atlas annotation. Bottom row: excitatory fraction per voxel (blue = inhibitory, red = excitatory).*
+
+![E/I by region](results/figures/ei_ratio_by_region.png)
+*Per-voxel E/I distributions for major forebrain divisions. Isocortex median ~0.83, striatum ~0.04.*
+
+---
 
 The approach is similar to what you'd do with whole-brain LSFM data: voxelize point-cloud cell coordinates into 3D density volumes, do background subtraction and normalization, then run image analysis (LoG blob detection, regional statistics, QC checks) on those volumes. The difference here is the input comes from MERFISH rather than a fluorescence image, so there's no registration step needed.
 
@@ -44,26 +56,11 @@ streamlit run dashboard.py
 9. QC report (coverage, distribution checks, E/I ranges vs. literature)
 10. Figures
 
-## Outputs
-
-```
-results/
-  region_stats.csv       # E/I stats per major forebrain division
-  subregion_stats.csv    # per CCF substructure (~600 regions)
-  figures/
-    ei_ratio_sections.png      # coronal montage, blue=inhibitory red=excitatory
-    ei_ratio_by_region.png     # violin plots per forebrain region
-    subregion_ei_ranking.png   # top 15 most/least excitatory subregions
-    excit_vs_inhib_scatter.png # density scatter colored by E/I
-    ei_gradient_axis0.png      # mean E/I along AP axis
-    ei_gradient_axis2.png      # mean E/I along ML axis
-```
-
 ## Results
 
-The pipeline correctly recovers the expected E/I organization. Isocortex sits around E/I = 0.75–0.80, striatum around 0.05–0.10, and hippocampus intermediate (~0.70). The Mann-Whitney test comparing cortex vs. striatum comes back p < 10⁻³⁰⁰. The subregion ranking surfaces things like cerebellar-adjacent structures at the extreme inhibitory end and upper-layer cortical areas at the excitatory end, which is consistent with known laminar composition.
+The pipeline correctly recovers the expected E/I organization. Isocortex sits around E/I = 0.75-0.80, striatum around 0.05-0.10, and hippocampus intermediate (~0.70). The Mann-Whitney test comparing cortex vs. striatum comes back p < 10⁻³⁰⁰. The subregion ranking surfaces things like cerebellar-adjacent structures at the extreme inhibitory end and upper-layer cortical areas at the excitatory end, which is consistent with known laminar composition.
 
-Coverage is ~23% of the CCF volume, lower than you'd get from a whole-brain LSFM dataset because the MERFISH sections don't tile continuously. This is expected and flagged in the QC report as a warning rather than a failure.
+Coverage is ~23% of the CCF volume -- lower than you'd get from a whole-brain LSFM dataset because the MERFISH sections don't tile continuously. This is expected and flagged in the QC report as a warning rather than a failure.
 
 ## Files
 
@@ -78,3 +75,4 @@ Coverage is ~23% of the CCF volume, lower than you'd get from a whole-brain LSFM
 | `qc.py` | QC checks and report |
 | `visualize.py` | figures |
 | `run_pipeline.py` | top-level orchestration |
+| `dashboard.py` | Streamlit results dashboard |
