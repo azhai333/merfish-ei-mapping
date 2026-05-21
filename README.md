@@ -1,6 +1,6 @@
 # Forebrain E/I ratio mapping from MERFISH data
 
-Maps excitatory/inhibitory neuron density ratios across the mouse forebrain using the Allen Brain Cell Atlas MERFISH dataset ([Zhang et al. 2023, *Science*]([https://www.nature.com/articles/s41586-023-06808-9])). The question is whether automated volumetric analysis can recover the known neuroanatomical E/I organization — cortex heavily excitatory, striatum heavily inhibitory — without any manual annotation, just cell coordinates and neurotransmitter labels.
+Maps excitatory/inhibitory neuron density ratios across the mouse forebrain using the Allen Brain Cell Atlas MERFISH dataset ([Zhang et al. 2023, *Science*](https://www.nature.com/articles/s41586-023-06808-9)). The question is whether automated volumetric analysis can recover the known neuroanatomical E/I organization — cortex heavily excitatory, striatum heavily inhibitory — without any manual annotation, just cell coordinates and neurotransmitter labels.
 
 The approach is similar to what you'd do with whole-brain LSFM data: voxelize point-cloud cell coordinates into 3D density volumes, do background subtraction and normalization, then run image analysis (LoG blob detection, regional statistics, QC checks) on those volumes. The difference here is the input comes from MERFISH rather than a fluorescence image, so there's no registration step needed.
 
