@@ -2,7 +2,7 @@
 
 Maps excitatory/inhibitory neuron density ratios across the mouse forebrain using the Allen Brain Cell Atlas MERFISH dataset ([Zhang et al. 2023, *Science*](https://doi.org/10.1126/science.abj6987)). The question is whether automated volumetric analysis can recover the known neuroanatomical E/I organization -- cortex heavily excitatory, striatum heavily inhibitory -- without any manual annotation, just cell coordinates and neurotransmitter labels.
 
-**[Live dashboard](https://your-app.streamlit.app)** <!-- replace after deploying to Streamlit Community Cloud -->
+**[Live dashboard](https://merfish-ei-mapping-lndjmqhcueewzihncnhut8.streamlit.app/)**
 
 ---
 
